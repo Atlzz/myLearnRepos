@@ -2,9 +2,6 @@
 #include <thread>
 #include <chrono>
 #include <conio.h>
-#include <string>
-#include <windows.h>
-#include <cmath>
 
 
 class Pet {
@@ -79,6 +76,8 @@ repeatDiff:
     std::cin >> diff;
     if (diff < 1 || diff>10) {
         std::cout << "Неверная сложность, повторите " << std::endl;
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         goto repeatDiff;
     }
     std::cout << "Игра началась!" << std::endl;
