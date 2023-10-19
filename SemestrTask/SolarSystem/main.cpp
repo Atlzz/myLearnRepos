@@ -77,15 +77,15 @@ bool isMouseCollision(RenderWindow& window, Shape& shape) {
     FloatRect bounds = shape.getGlobalBounds();
 
     if (bounds.contains(window.mapPixelToCoords(Mouse::getPosition(window)))) {
-        return true; 
+        return true;
     }
     else {
-        return false; 
+        return false;
     }
 }
 
-    
-    
+
+
 
 
 int main()
@@ -103,13 +103,13 @@ int main()
     ImGui::SFML::Init(window);
     window.setVerticalSyncEnabled(true);
 
-    view.setCenter(2250, 1350);
+    view.setCenter(4500, 2700);
     window.setView(view);
 
     VertexArray stars(Points, 600);
     for (int i = 0; i < 599; i++) {
         stars[i].color = Color(255, 255, 255);
-        stars[i].position = Vector2f(rand() % 4500, rand() % 2700);
+        stars[i].position = Vector2f(rand() % 9000, rand() % 5400);
     }
 
     CircleShape sun(100.f), merk(4), vener(8), earth(10), mars(5), moon(4), jupiter(20), saturn(25);
@@ -118,7 +118,7 @@ int main()
     Texture texsun;
     texsun.loadFromFile("sun.png");
     sun.setTexture(&texsun);
-    sun.setPosition(2250, 1350);
+    sun.setPosition(4500, 2700);
     sun.setOrigin(100, 100);
 
     Texture texearth;
@@ -157,7 +157,7 @@ int main()
 
 
 
-    Planets merkxy(2250, 1350, 200, -1), venerxy(2250, 1350, 300, 1), marsxy(2250, 1350, 500, -1), earthxy(2250, 1350, 400, -1), saturnxy(2250, 1350, 660, -1), jupiterxy(2250, 1350, 800, -1);
+    Planets merkxy(4500, 2700, 200, -1), venerxy(4500, 2700, 300, 1), marsxy(4500, 2700, 500, -1), earthxy(4500, 2700, 400, -1), saturnxy(4500, 2700, 660, -1), jupiterxy(4500, 2700, 800, -1);
     Planets moonxy(30, -1);
 
     Clock deltaClock;
@@ -166,7 +166,7 @@ int main()
 
     while (window.isOpen())
     {
-        earthDayscounter += 0.365*speedModifier;
+        earthDayscounter += 0.365 * speedModifier;
         earthDays = (int)earthDayscounter;
         Event event;
         while (window.pollEvent(event))
@@ -194,7 +194,7 @@ int main()
         }
 
         ImGui::SFML::Update(window, deltaClock.restart());
-        
+
         ImGui::Begin("Info");
         ImGui::Text("Days in earth: %i", earthDays);
         ImGui::SliderFloat("Speed", &speedModifier, 0, 10);
@@ -219,7 +219,7 @@ int main()
         if (isMouseCollision(window, sun)) {
             ImGui::BeginTooltip();
             ImGui::Text("Name: Sun");
-            ImGui::Text("Size: kakmoychlen");
+            ImGui::Text("Size: OgromniyKapec");
             ImGui::EndTooltip();
         }
         if (isMouseCollision(window, merk)) {
@@ -228,7 +228,7 @@ int main()
             ImGui::Text("Size: 4880 km");
             ImGui::Text("Distance from sun: %i", merkxy.rad);
             ImGui::Text("Angle: %f", merkxy.a);
-       
+
             ImGui::EndTooltip();
         }
         if (isMouseCollision(window, vener)) {
@@ -280,22 +280,22 @@ int main()
             ImGui::EndTooltip();
         }
 
-        
-        
-      
+
+
+
         merkxy.move(0.88 * speedModifier);
         merk.setPosition(merkxy.getx(), merkxy.gety());
 
-        venerxy.move(0.225*speedModifier);
+        venerxy.move(0.225 * speedModifier);
         vener.setPosition(venerxy.getx(), venerxy.gety());
 
-        marsxy.move(0.687*speedModifier);
+        marsxy.move(0.687 * speedModifier);
         mars.setPosition(marsxy.getx(), marsxy.gety());
 
-        earthxy.move(0.365*speedModifier);
+        earthxy.move(0.365 * speedModifier);
         earth.setPosition(earthxy.getx(), earthxy.gety());
         moonxy.setposition(earth.getPosition().x, earth.getPosition().y);
-        moonxy.move(3*speedModifier);
+        moonxy.move(3 * speedModifier);
         moon.setPosition(moonxy.getx(), moonxy.gety());
 
         saturnxy.move(0.5 * speedModifier);
@@ -303,7 +303,7 @@ int main()
 
         jupiterxy.move(0.88 * speedModifier);
         jupiter.setPosition(jupiterxy.getx(), jupiterxy.gety());
-        
+
 
         window.clear();
         window.draw(stars);
