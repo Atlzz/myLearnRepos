@@ -9,7 +9,7 @@
 
 using namespace sf;
 using namespace std;
-// Класс для вычисления кооординат вращающегося объекта
+
 class Planets
 {
 public:
@@ -77,10 +77,10 @@ bool isMouseCollision(RenderWindow& window, Shape& shape) {
     FloatRect bounds = shape.getGlobalBounds();
 
     if (bounds.contains(window.mapPixelToCoords(Mouse::getPosition(window)))) {
-        return true; // Курсор мыши наведен на фигуру
+        return true; 
     }
     else {
-        return false; // Курсор мыши не наведен на фигуру
+        return false; 
     }
 }
 
@@ -95,9 +95,9 @@ int main()
     int earthDays = 0;
     std::string selectPlanet;
 
-    // Запускаем генератор случайных чисел
     srand(time(NULL));
-    // Создаём графическое окно
+
+
     RenderWindow window(VideoMode(1500, 900), L"Солнечная система", Style::Default);
     sf::View view(sf::FloatRect(sf::Vector2f(0.f, 0.f), sf::Vector2f(1500.f, 900.f)));
     ImGui::SFML::Init(window);
@@ -156,7 +156,7 @@ int main()
     saturn.setOrigin(25, 25);
 
 
-    // Создаём объекты определения координат планет
+
     Planets merkxy(2250, 1350, 200, -1), venerxy(2250, 1350, 300, 1), marsxy(2250, 1350, 500, -1), earthxy(2250, 1350, 400, -1), saturnxy(2250, 1350, 660, -1), jupiterxy(2250, 1350, 800, -1);
     Planets moonxy(30, -1);
 
@@ -282,31 +282,25 @@ int main()
 
         
         
-        // Каждую итерацию изменяем угол положения планеты на 1       
+      
         merkxy.move(0.88 * speedModifier);
-        //Устанавливаем текущие координаты объекта
         merk.setPosition(merkxy.getx(), merkxy.gety());
-        // Каждую итерацию изменяем угол положения планеты на 0.5  
+
         venerxy.move(0.225*speedModifier);
-        //Устанавливаем текущие координаты объекта
         vener.setPosition(venerxy.getx(), venerxy.gety());
-        // Каждую итерацию изменяем угол положения планеты на 1.5  
+
         marsxy.move(0.687*speedModifier);
-        //Устанавливаем текущие координаты объекта
         mars.setPosition(marsxy.getx(), marsxy.gety());
-        // Каждую итерацию изменяем угол положения планеты на 0.8 
+
         earthxy.move(0.365*speedModifier);
-        //Устанавливаем текущие координаты объекта
         earth.setPosition(earthxy.getx(), earthxy.gety());
-        // Определяем центр вращения, так как земля меняет своё положение 
         moonxy.setposition(earth.getPosition().x, earth.getPosition().y);
-        // Каждую итерацию изменяем угол положения планеты на 3 
         moonxy.move(3*speedModifier);
-        //Устанавливаем текущие координаты объекта
         moon.setPosition(moonxy.getx(), moonxy.gety());
 
         saturnxy.move(0.5 * speedModifier);
         saturn.setPosition(saturnxy.getx(), saturnxy.gety());
+
         jupiterxy.move(0.88 * speedModifier);
         jupiter.setPosition(jupiterxy.getx(), jupiterxy.gety());
         
